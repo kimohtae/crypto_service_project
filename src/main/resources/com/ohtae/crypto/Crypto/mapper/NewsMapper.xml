@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ohtae.crypto.Crypto.mapper.NewsMapper">
+    <insert id="insertNewsInfo">
+        insert into news_page_info
+            (npi_title,npi_link,npi_company,npi_content,npi_image,npi_nti_seq)
+        values
+            (#{npi_title},#{npi_link},#{npi_company},#{npi_content},#{npi_image},#{npi_nti_seq})
+    </insert>
+</mapper>
