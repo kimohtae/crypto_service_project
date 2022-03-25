@@ -2,10 +2,13 @@ package com.ohtae.crypto.Crypto.data;
 
 import java.util.Date;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-public class NewsInfoVO {
+@Getter
+@Setter
+public class NewsInfoVO{
+
     private Integer npi_seq;
     private String npi_title;
     private Integer npi_view;
@@ -15,5 +18,10 @@ public class NewsInfoVO {
     private String npi_company;
     private String npi_content;
     private Integer npi_nti_seq;
-    private Integer npi_like;
+
+    
+    @Override
+    public String toString(){
+        return npi_seq+"|"+npi_title+"|"+npi_view+"|"+npi_reg_dt+"|"+npi_link+"|"+npi_image+"|"+npi_company+"|"+npi_nti_seq+"|"+npi_content;
+    }
 }

@@ -1,4 +1,4 @@
-package com.ohtae.crypto.Crypto.api;
+package com.ohtae.crypto.Crypto.component;
 
 import com.ohtae.crypto.Crypto.data.NewsInfoVO;
 import com.ohtae.crypto.Crypto.mapper.NewsMapper;
@@ -8,15 +8,16 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
-@RestController
-public class NewsAPIController {
+@Component
+public class CrawlingComponent {
     @Autowired NewsMapper nMapper;
-
-    @PutMapping("/api/news/gathering")
-    public String putNewsInfo()throws Exception{
+    
+    @Scheduled(cron = "0 0 1 */7 * *")
+    public String insertNewsInfo()throws Exception{
+        System.out.println("start");
         String FirstPage="https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=100";
         String[] OtherPage={
             "https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=101",
@@ -42,7 +43,7 @@ public class NewsAPIController {
         return "정보가 입력되었습니다.";
     }
 
-    void insert(String address,int k)throws Exception{
+    public void insert(String address,int k)throws Exception{
         Document doc = Jsoup.connect(address).get();
         Elements linkUrl = doc.select("ul.type06_headline dl dt:eq(1) a");
         String Urls="";
@@ -50,7 +51,7 @@ public class NewsAPIController {
             Urls += i.attr("href")+",,";
         }
         String[] Url = Urls.split(",,");
-    
+
         for(String i:Url){
             if(!(i.equals(" ") && i==null)){
                 NewsInfoVO news = new NewsInfoVO();
@@ -62,7 +63,7 @@ public class NewsAPIController {
                 Content = Content.substring(start+1);
                 String Press = doc.select(".article_footer a:eq(0)").text();
                 Press = Press.split(" ")[0];
-    
+
                 news.setNpi_title(Title);
                 news.setNpi_content(Content);
                 news.setNpi_image(Image);

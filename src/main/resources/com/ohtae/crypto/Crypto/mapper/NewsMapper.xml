@@ -7,4 +7,17 @@
         values
             (#{npi_title},#{npi_link},#{npi_company},#{npi_content},#{npi_image},#{npi_nti_seq})
     </insert>
+
+    <select id="selectNewsFirst" resultType="java.lang.Integer">
+        select npi_seq from news_page_info order by npi_seq asc limit 1
+    </select>
+    <select id="selectNewsLast" resultType="java.lang.Integer">
+        select npi_seq from news_page_info order by npi_seq desc limit 1
+    </select>
+
+
+    <select id="selectNewsInfo" resultType="com.ohtae.crypto.Crypto.data.NewsInfoVO">
+        select * from news_page_info
+        where npi_reg_dt between #{start} and #{end}
+    </select>
 </mapper>

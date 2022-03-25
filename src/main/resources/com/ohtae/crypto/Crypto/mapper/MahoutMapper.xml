@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ohtae.crypto.Crypto.mapper.MahoutMapper">
+    <insert id="insertNewsRecommendList">
+        insert into news_recommend_info
+            (nri_mi_seq,nri_npi_seq,nri_score)
+        values
+            <foreach collection="list" item="item" separator=",">
+                (#{item.nri_mi_seq},#{item.nri_npi_seq},#{item.nri_score})
+            </foreach>
+    </insert>
+</mapper>

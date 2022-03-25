@@ -17,7 +17,7 @@ $(function(){
 
     $("#crawling").click(function(){
         $.ajax({
-            url:"/api/news/crawling",
+            url:"/api/news/gathering",
             type:"put",
             success:function(r){
                 alert(r)
@@ -25,11 +25,33 @@ $(function(){
         })
     })
 
-    $("#makeLog").click(function(){
+    $("#makeLinkClickLog").click(function(){
         let start = $("#begin").val();
         let end = $("#end").val();
         $.ajax({
             url:"/link/click?start="+start+"&end="+end,
+            type:"get",
+            success:function(msg){
+                alert(msg);
+            }
+        })
+    })
+    $("#makeNewsLog").click(function(){
+        let start = $("#begin").val();
+        let end = $("#end").val();
+        $.ajax({
+            url:"/news/click?start="+start+"&end="+end,
+            type:"get",
+            success:function(msg){
+                alert(msg);
+            }
+        })
+    })
+    $("#makeMemberLog").click(function(){
+        let start = $("#begin").val();
+        let end = $("#end").val();
+        $.ajax({
+            url:"/member/click?start="+start+"&end="+end,
             type:"get",
             success:function(msg){
                 alert(msg);

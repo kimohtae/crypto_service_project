@@ -28,6 +28,8 @@
     <label for="end">종료일</label>
     <input type="text" id="end">
     <br>
-    <button id="makeLog">링크 클릭 기록 로그파일 생성 버튼</button>
+    <button id="makeLinkClickLog">링크 클릭 로그파일 생성 버튼</button>
+    <button id="makeNewsLog">뉴스 로그파일 생성 버튼</button>
+    <button id="makeMemberLog">멤버 로그파일 생성 버튼</button>
 </body>
 </html>
